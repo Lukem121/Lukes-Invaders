@@ -25,7 +25,7 @@ import javax.swing.JFrame;
 	int YAmount = 75;
 	int XAmmount = 0;
 	
-	
+	//test
 	
 	
 	private boolean running = false;

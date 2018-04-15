@@ -3,6 +3,7 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
 	
+	//test
 	private boolean[] keys;
 	public boolean left, right, space;
 	

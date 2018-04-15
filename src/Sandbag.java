@@ -10,6 +10,8 @@ public class Sandbag {
 	
 	int hitAmmount = 0;
 	
+	//test
+	
 	Bullet b = GameEngine.b;
 	Monster[] m = GameEngine.m;
 	

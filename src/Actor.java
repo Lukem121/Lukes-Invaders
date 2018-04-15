@@ -7,6 +7,8 @@ public abstract class Actor {
 	int LocationY;
 	int Speed;
 	int Life;
+	
+	//test
 
 	Bullet b = GameEngine.b;
 	

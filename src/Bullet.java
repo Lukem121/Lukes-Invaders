@@ -1,6 +1,7 @@
 
 public class Bullet {
 
+	//test
 	int LocationX = 1000;
 	int LocationY = 1000;
 	int speed;
