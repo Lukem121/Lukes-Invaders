@@ -3,6 +3,8 @@ package main;
 import main.Keyboard;
 import main.Player;
 
+	//test
+
 public interface Stage {
 	
 	public static int width = 700;

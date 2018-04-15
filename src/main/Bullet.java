@@ -1,7 +1,7 @@
 package main;
 
 public class Bullet extends Actor implements Stage {
-
+	//test
 	
 	public Bullet() {
 		this.w = 6;

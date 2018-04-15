@@ -3,7 +3,7 @@ package main;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
-
+//test
 public class Player extends Actor implements Stage {
 
 	private boolean up,down,left,right;

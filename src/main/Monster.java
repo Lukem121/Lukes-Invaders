@@ -1,7 +1,7 @@
 package main;
 
 import java.awt.Graphics2D;
-
+//test
 public class Monster extends Actor{
 	
 	int shouldMove = 0;
