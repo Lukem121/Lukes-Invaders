@@ -1,5 +1,7 @@
+import java.awt.Graphics;
 
-public class Sandbag {
+
+public class Sandbag implements Stage{
 
 	int Width;
 	int Height;
@@ -24,6 +26,8 @@ public class Sandbag {
 	public void update(){
 		checkCollision();
 	}
+	
+	
 	public void checkCollision(){
 		
 		for (int i = 0; i < m.length; i++) {
@@ -56,6 +60,10 @@ public class Sandbag {
 			}
 		}
 		
+	}
+
+	public void draw(Graphics g) {
+		g.drawImage(SpriteCache.sandbag[this.state], this.LocationX, this.LocationY, null);
 	}
 	
 }

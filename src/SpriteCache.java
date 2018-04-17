@@ -37,12 +37,13 @@ public class SpriteCache {
 	
 	private static final int width = 60, height = 60;
 	
-	public static BufferedImage alien, alienBullet, player, bullet, endGame;
+	public static BufferedImage alien, alienBullet, player, bullet, alienShip, endGame;
 	public static BufferedImage[] sandbag = new BufferedImage[5];
 	
 	public static void init(){
 		SpriteCache sheet = new SpriteCache(SpriteCache.loadImage("/textures/spriteSheet.png"));
 		
+		alienShip = sheet.crop(width, height, width, height);
 		alien = sheet.crop(0, 0, width, height);
 		alienBullet = sheet.crop(width, height * 3, width, height);
 		player = sheet.crop(0, height, width, height);

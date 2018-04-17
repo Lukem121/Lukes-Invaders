@@ -1,5 +1,5 @@
 
-public abstract class Actor {
+public abstract class Actor implements Stage {
 	
 	int Width;
 	int Height;

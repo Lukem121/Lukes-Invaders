@@ -1,7 +1,7 @@
+import java.awt.Graphics;
 import java.util.Random;
 
-
-public class Monster extends Actor {
+public class Monster extends Actor implements Stage {
 
 	//test
 
@@ -21,7 +21,8 @@ public class Monster extends Actor {
 	boolean canDrop = true;
 	boolean dropped = false;
 	
-	Player p = GameEngine.p;
+	Player p = Stage.p;
+	Bullet b = Stage.b;
 	Sandbag[] sb = GameEngine.sb;
 	
 
@@ -36,7 +37,7 @@ public class Monster extends Actor {
 	
 	public void update(){
 		checkCollision();
-		
+		reachedBottom();
 		dance();
 		
 		if(canDrop && num > 60){
@@ -97,11 +98,19 @@ public class Monster extends Actor {
 		}
 	}
 	
+	void reachedBottom(){
+		
+		if(this.LocationY + 60 >= p.LocationY){
+			GameEngine.gameOver = true;
+		}
+		 
+	}
+	
 	public void checkCollision(){
 				
 		
-		if(b.LocationY > this.LocationY + 15 && b.LocationY < this.LocationY + 45 &&
-				b.LocationX > this.LocationX + 10 && b.LocationX < this.LocationX + 45)
+		if(b.LocationY > this.LocationY && b.LocationY < this.LocationY + 45 &&
+				b.LocationX > this.LocationX && b.LocationX < this.LocationX + 45)
 		{
 			Life = 0;
 			LocationX = 5000;
@@ -116,9 +125,12 @@ public class Monster extends Actor {
 			p.Life--;
 		}
 		
-		if(true){
-			
-		}
+	}
+
+	public void draw(Graphics g) {
+
+		g.drawImage(SpriteCache.alien, this.LocationX, this.LocationY, null);
+		g.drawImage(SpriteCache.alienBullet, this.bulletLocationX, this.bulletLocationY, null);
 		
 	}
 }

@@ -1,5 +1,7 @@
+import java.awt.Graphics;
 
-public class Bullet {
+
+public class Bullet implements Stage {
 
 	//test
 	int LocationX = 1000;
@@ -7,19 +9,28 @@ public class Bullet {
 	int speed;
 	boolean shot = false;
 	
-	public void update(){
+	public void update(Keyboard key){
 		
 		if(shot){
 			LocationY = LocationY - 10;
 		}
 		
+		if (key.space){
+			
+			if(shot == false){
+				LocationX = p.LocationX + 25;
+				LocationY = p.LocationY;
+				shot = true;
+			}
+		}
+		
 	}
+
 	
-	public int getLocationY(){
-		return LocationY;
-	}
-	public int getLocationX(){
-		return LocationX;
+	
+	public void draw(Graphics g) {
+		
+		g.drawImage(SpriteCache.bullet, LocationX, LocationY, null);
 	}
 	
 }

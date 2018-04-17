@@ -1,41 +1,37 @@
+import java.awt.Graphics;
 
-public class Player extends Actor {
+
+public class Player extends Actor implements Stage {
+
 	
-	//test
 	public Player() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Player(int w, int h, int x, int y, int s) {
 		
-		this.Width = w;
-		this.Height = h;
-		this.LocationX = x;
-		this.LocationY = y;
-		this.Speed = s;
-		
-		Life = 3;
+		this.Width = 60;
+		this.Height = 60;
+		this.LocationX = Stage.WIDTH / 2 - 30;
+		this.LocationY = Stage.HEIGHT -60;
+		this.Speed = 5;
+		this.Life = 3;
 	}
 	
 	public void update(){
 		
 	}
-
-	public int getLocationX() {
-		// TODO Auto-generated method stub
-		return LocationX;
-	}
-
-	public int getLocationY() {
-		// TODO Auto-generated method stub
-		return LocationY;
+	
+	void move(Keyboard key){
+		if (LocationX <= Stage.WIDTH - Width && key.right) 
+		{
+			LocationX = LocationX + Speed;
+		}
+		if (LocationX >= 0 && key.left)
+		{
+			LocationX = LocationX - Speed;	
+		}
+		
 	}
 	
-	public void moveLeft(){
-		LocationX = LocationX - Speed;
-	}
-	public void moveRight(){
-		LocationX = LocationX + Speed;
+	public void draw(Graphics g){
+		g.drawImage(SpriteCache.player, LocationX, LocationY, null);
 	}
 
 }
