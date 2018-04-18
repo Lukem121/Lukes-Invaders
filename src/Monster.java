@@ -3,9 +3,7 @@ import java.util.Random;
 
 public class Monster extends Actor implements Stage {
 
-	//test
-
-	
+	//This is where the variables are defined for the class	
 	int bulletLocationX;
 	int bulletLocationY;
 	int bulletSpeed = 5;
@@ -15,17 +13,16 @@ public class Monster extends Actor implements Stage {
 	int movedRightAmmount = 0;
 	int moveAmmount = 10;
 	int moveDownAmmount = 20;
-	Random rand = new Random();
 	int  randomNumber;
 	int num = 0;
 	boolean canDrop = true;
 	boolean dropped = false;
-	
+	Random rand = new Random();
 	Player p = Stage.p;
 	Bullet b = Stage.b;
 	Sandbag[] sb = GameEngine.sb;
 	
-
+	//this is the constructor for the class
 	public Monster(int x, int y) {
 		this.LocationX = x;
 		this.LocationY = y;
@@ -35,11 +32,15 @@ public class Monster extends Actor implements Stage {
 		
 	}
 	
+	/**
+	 * This method updates the class it calls other methods within the class
+	 */
 	public void update(){
 		checkCollision();
 		reachedBottom();
 		dance();
 		
+		//This code checks if the alien can drop a bomb on the player
 		if(canDrop && num > 60){
 			drop();
 			num = 0;
@@ -55,6 +56,9 @@ public class Monster extends Actor implements Stage {
 		
 	}
 	
+	/**
+	 * This method is used to make the aliens move around the screen
+	 */
 	public void dance(){
 			
 		shouldMove++;
@@ -98,6 +102,9 @@ public class Monster extends Actor implements Stage {
 		}
 	}
 	
+	/**
+	 * This method checks if the aliens have reached the bottom of the screen
+	 */
 	void reachedBottom(){
 		
 		if(this.LocationY + 60 >= p.LocationY){
@@ -106,6 +113,9 @@ public class Monster extends Actor implements Stage {
 		 
 	}
 	
+	/**
+	 * This method is used to check if the aliens drop has hit the player or the sandbag
+	 */
 	public void checkCollision(){
 				
 		
@@ -129,6 +139,9 @@ public class Monster extends Actor implements Stage {
 		
 	}
 
+	/**
+	 * This method draws the alien and the alien's bullet
+	 */
 	public void draw(Graphics g) {
 
 		g.drawImage(SpriteCache.alien, this.LocationX, this.LocationY, null);

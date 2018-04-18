@@ -3,31 +3,37 @@ import java.awt.Graphics;
 
 public class Sandbag implements Stage{
 
+	//This is where the variables are declared
 	int Width;
 	int Height;
 	int LocationX;
 	int LocationY;
 	int Speed;
 	int state = 0;
-	
 	int hitAmmount = 0;
-	
-	//test
 	
 	Bullet b = GameEngine.b;
 	Monster[] m = GameEngine.m;
 	
+	/**
+	 * This method is used to set the variables for the sandbag
+	 */
 	public Sandbag(int x, int y) {
 		
 		this.LocationX = x;
 		this.LocationY = y;
 	}
 	
+	/**
+	 * This method updates the class it calls other methods within the class
+	 */
 	public void update(){
 		checkCollision();
 	}
 	
-	
+	/**
+	 * This method is used to check if the aliens drop has hit the player or the sandbag
+	 */
 	public void checkCollision(){
 		
 		for (int i = 0; i < m.length; i++) {
@@ -62,6 +68,9 @@ public class Sandbag implements Stage{
 		
 	}
 
+	/**
+	 * This method draws the sandbag in its current state of the sprite 
+	 */
 	public void draw(Graphics g) {
 		g.drawImage(SpriteCache.sandbag[this.state], this.LocationX, this.LocationY, null);
 	}

@@ -3,12 +3,16 @@ import java.awt.Graphics;
 
 public class Bullet implements Stage {
 
-	//test
+	//This is where the variables for the class are defined
 	int LocationX = 1000;
 	int LocationY = 1000;
 	int speed;
 	boolean shot = false;
 	
+	/**
+	 * This method is used to updated the class
+	 * it controls when the bullet has been shot and how fast it should move
+	 */
 	public void update(Keyboard key){
 		
 		if(shot){
@@ -26,6 +30,9 @@ public class Bullet implements Stage {
 		
 	}
 	
+	/**
+	 * This method draws the bullet
+	 */
 	public void draw(Graphics g) {
 		
 		g.drawImage(SpriteCache.bullet, LocationX, LocationY, null);

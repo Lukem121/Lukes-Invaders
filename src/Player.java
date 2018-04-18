@@ -6,6 +6,7 @@ public class Player extends Actor implements Stage {
 	
 	public int Score;
 
+	//This is the constructor for the player it initialises the variables from the actor class
 	public Player() {
 		
 		this.Width = 60;
@@ -15,11 +16,10 @@ public class Player extends Actor implements Stage {
 		this.Speed = 5;
 		this.Life = 3;
 	}
-	
-	public void update(){
-		
-	}
-	
+
+	/**
+	 * This method is used to move the player along the x axes 
+	 */
 	void move(Keyboard key){
 		if (LocationX <= Stage.WIDTH - Width && key.right) 
 		{
@@ -32,6 +32,9 @@ public class Player extends Actor implements Stage {
 				
 	}
 	
+	/**
+	 * This method draws the player
+	 */
 	public void draw(Graphics g){
 		g.drawImage(SpriteCache.player, LocationX, LocationY, null);
 	}

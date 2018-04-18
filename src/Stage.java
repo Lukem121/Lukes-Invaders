@@ -3,10 +3,13 @@ import java.util.ArrayList;
 
 public interface Stage {
 	
+	/*
+	 * This interface is used to allow all other classes to access common objects and variables.
+	 */
+	
 	public static int WIDTH = 700;
 	public static int HEIGHT = 650;
 	public static int STATE = 0;
-	
 	ArrayList<Monster> monsterArray = new ArrayList<Monster>();
 	public static Player p = new Player();
 	public static Ship as = new Ship();
