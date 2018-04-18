@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 
 public interface Stage {
 	
@@ -5,6 +7,7 @@ public interface Stage {
 	public static int HEIGHT = 650;
 	public static int STATE = 0;
 	
+	ArrayList<Monster> monsterArray = new ArrayList<Monster>();
 	public static Player p = new Player();
 	public static Ship as = new Ship();
 	public static Bullet b = new Bullet();

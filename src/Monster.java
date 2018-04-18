@@ -117,6 +117,7 @@ public class Monster extends Actor implements Stage {
 			LocationX = 5000;
 			b.LocationX = 4000;
 			b.shot = false;
+			monsterArray.remove(1);
 		}
 		
 		if(bulletLocationX > p.LocationX && bulletLocationX < p.LocationX + 60 &&

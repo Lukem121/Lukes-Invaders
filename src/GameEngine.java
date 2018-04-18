@@ -36,6 +36,7 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 	private String highScore = "";
 
 	private boolean running = false;
+	boolean dev = false;
 	static Graphics g;
 	private Thread thread;
 	private JFrame frame;
@@ -52,7 +53,7 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 	public void init() {
 
 		SpriteCache.init();
-		
+		monsterArray.add(m[1]);
 		if(highScore.equals("")){
 			highScore = this.GetHighScoreValue();
 		}
@@ -60,7 +61,7 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 		for (int i = 0; i < m.length; i++) {
 
 			XAmmount = loopAmmount * 50;
-
+			monsterArray.add(m[i]);
 			m[i] = new Monster(XAmmount, YAmount);
 
 			if (loopAmmount == 12) {
@@ -97,7 +98,11 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 		p.move(key);
 		b.update(key);
 		as.update();
-		
+		DevMode();
+				
+		if(dev){
+			p.Life = 9999;
+		}
 
 		for (int i = 0; i < sb.length; i++) {
 			sb[i].update();
@@ -147,6 +152,12 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 		if (p.Life <= 0 || GameEngine.gameOver) {
 			CheckScore();
 			g.drawImage(SpriteCache.endGame, (Stage.WIDTH / 2) - 120,
+					(Stage.HEIGHT / 2) - 50, null);
+			p.LocationX = 5000;
+		}
+		if (monsterArray.size() <= 1) {
+			CheckScore();
+			g.drawImage(SpriteCache.endGameWin, (Stage.WIDTH / 2) - 80,
 					(Stage.HEIGHT / 2) - 50, null);
 			p.LocationX = 5000;
 		}
@@ -225,6 +236,16 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+	}
+	
+	void DevMode(){
+		if(key.devButtonEnable){
+			dev =  true;
+		}
+		if(key.devButtonDisable){
+			dev =  false;
 		}
 		
 	}

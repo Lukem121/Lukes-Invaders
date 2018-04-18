@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.util.Random;
 
 
 public class Ship extends Actor implements Stage {
@@ -7,7 +8,9 @@ public class Ship extends Actor implements Stage {
 	int bulletLocationX;
 	int bulletLocationY;
 	int bulletSpeed = 5;
-	boolean shot = false;
+	int  randomNumber;
+	int time = 0;
+	Random rand = new Random();
 
 	public Ship() {
 		this.LocationX = -60;
@@ -18,11 +21,24 @@ public class Ship extends Actor implements Stage {
 
 	void update(){
 		checkCollision();
-		act();
+		if(act){
+			act();
+		}
+		
+		if(time >= 60){
+			WhenToAct();
+			time = 0;
+		}
+		time++;
 	}
 	
 	void act(){
-		this.LocationX += 2;
+		if(this.LocationX > Stage.WIDTH){
+			this.LocationX = - 80;
+			act = false;
+		}else{
+			this.LocationX += 2;
+		}
 	}
 	
 	
@@ -37,6 +53,13 @@ public class Ship extends Actor implements Stage {
 			p.Score += 100;
 			this.Life = 0;
 			this.LocationY = 5000;
+		}
+	}
+	
+	public void WhenToAct(){
+		randomNumber = rand.nextInt(100) + 1;
+		if(randomNumber > 95){
+			act = true;
 		}
 	}
 	

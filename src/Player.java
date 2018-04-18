@@ -29,11 +29,7 @@ public class Player extends Actor implements Stage {
 		{
 			LocationX = LocationX - Speed;
 		}
-		if(key.letterO){
-			as.act =true;
-		}
-		
-		
+				
 	}
 	
 	public void draw(Graphics g){
