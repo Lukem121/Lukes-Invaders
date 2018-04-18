@@ -113,6 +113,7 @@ public class Monster extends Actor implements Stage {
 				b.LocationX > this.LocationX && b.LocationX < this.LocationX + 45)
 		{
 			Life = 0;
+			p.Score += 10;
 			LocationX = 5000;
 			b.LocationX = 4000;
 			b.shot = false;

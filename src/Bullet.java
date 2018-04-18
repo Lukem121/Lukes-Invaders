@@ -25,8 +25,6 @@ public class Bullet implements Stage {
 		}
 		
 	}
-
-	
 	
 	public void draw(Graphics g) {
 		

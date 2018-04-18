@@ -6,7 +6,15 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class GameEngine extends Canvas implements Runnable, Stage {
 	private static final long serialVersionUID = 1L;
@@ -25,7 +33,7 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 	int YAmount = 75;
 	int XAmmount = 0;
 
-	// test
+	private String highScore = "";
 
 	private boolean running = false;
 	static Graphics g;
@@ -45,6 +53,9 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 
 		SpriteCache.init();
 		
+		if(highScore.equals("")){
+			highScore = this.GetHighScoreValue();
+		}
 
 		for (int i = 0; i < m.length; i++) {
 
@@ -86,6 +97,7 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 		p.move(key);
 		b.update(key);
 		as.update();
+		
 
 		for (int i = 0; i < sb.length; i++) {
 			sb[i].update();
@@ -99,9 +111,7 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 			b.shot = false;
 			b.LocationY = this.height + 20;
 		}
-
 	}
-
 	public void render() {
 
 		BufferStrategy bs = getBufferStrategy();
@@ -128,12 +138,14 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 			sb[i].draw(g);
 		}
 
-		// Life counter
+		// Life counter & score
 		g.setColor(Color.red);
 		g.setFont(new Font("Comic Sands", Font.PLAIN, 20));
 		g.drawString("Life: " + p.Life, 10, 30);
+		g.drawString("High Score: " + highScore +" Score: " + p.Score, Stage.WIDTH - 300, 30);
 
 		if (p.Life <= 0 || GameEngine.gameOver) {
+			CheckScore();
 			g.drawImage(SpriteCache.endGame, (Stage.WIDTH / 2) - 120,
 					(Stage.HEIGHT / 2) - 50, null);
 			p.LocationX = 5000;
@@ -142,6 +154,79 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 		// End Drawing
 		g.dispose();
 		bs.show();
+	}
+	
+	public void ReduceScore(){
+		if(p.Score > 0){
+			p.Score -= 1;
+		}
+	}
+	
+	public void CheckScore(){
+		
+		if (p.Score > Integer.parseInt(highScore.split(":")[1])){
+			String name = JOptionPane.showInputDialog("New High Score! What is your name?");
+			highScore = name + ":" + p.Score;
+			
+			File scoreFile = new File("highscore.dat");
+			if(!scoreFile.exists())
+			{
+				try {
+					scoreFile.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			FileWriter writeFile = null;
+			BufferedWriter writer = null;
+			try
+			{
+				writeFile = new FileWriter(scoreFile);
+				writer = new BufferedWriter(writeFile);
+				writer.write(this.highScore);
+			}
+			catch (Exception e){
+				
+			}
+			finally
+			{
+				try
+				{
+					if(writer != null)
+						writer.close();
+				}
+				catch (Exception e){
+					
+				}
+			}
+		}
+	}
+	
+	public String GetHighScoreValue(){
+		
+		FileReader readFile = null;
+		BufferedReader reader = null;
+		try
+		{
+			readFile = new FileReader("highscore.dat");
+			reader = new BufferedReader(readFile);
+			return reader.readLine();
+		}
+		
+		catch (Exception e)
+		{
+			return "Nobody:0";
+		}
+		finally
+		{
+			try {
+				if(reader != null)
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public synchronized void start() {
@@ -168,18 +253,23 @@ public class GameEngine extends Canvas implements Runnable, Stage {
 		// This code is used in the math to only allow 60 updates a second
 		final double ns = 1000000000.0 / 60.0;//was 60
 		double delta = 0;
+		int decay = 0;
 		init();
 		while (running) {
 			long now = System.nanoTime();
+			
 			delta += (now - lastTime) / ns;
 			lastTime = now;
 			while (delta >= 1) {
 
 				render();
-
 				update();
 				delta--;
-
+				decay++;
+				if(decay >= 60){
+					ReduceScore();
+					decay = 0;
+				}
 			}
 		}
 

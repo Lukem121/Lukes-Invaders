@@ -5,7 +5,7 @@ public class Keyboard implements KeyListener, Stage {
 	
 	//test
 	private boolean[] keys;
-	public boolean left, right, space;
+	public boolean left, right, space, letterO;
 	
 	public Keyboard() {
 		keys = new boolean[256];
@@ -15,6 +15,7 @@ public class Keyboard implements KeyListener, Stage {
 		left = keys[KeyEvent.VK_LEFT] || keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_RIGHT] || keys[KeyEvent.VK_D];
 		space = keys[KeyEvent.VK_SPACE];
+		letterO = keys[KeyEvent.VK_O];
 	}
 
 	@Override

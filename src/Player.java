@@ -4,6 +4,8 @@ import java.awt.Graphics;
 public class Player extends Actor implements Stage {
 
 	
+	public int Score;
+
 	public Player() {
 		
 		this.Width = 60;
@@ -25,8 +27,12 @@ public class Player extends Actor implements Stage {
 		}
 		if (LocationX >= 0 && key.left)
 		{
-			LocationX = LocationX - Speed;	
+			LocationX = LocationX - Speed;
 		}
+		if(key.letterO){
+			as.act =true;
+		}
+		
 		
 	}
 	
