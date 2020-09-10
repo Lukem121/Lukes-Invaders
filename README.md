@@ -1,4 +1,4 @@
-# Lukes Invaders
+# Luke's Space Invaders Remake
 This project is a remake of the classic space invaders game. Space Invaders is an arcade video game created by Tomohiro Nishikado and released in 1978. It was originally manufactured and sold by Taito in Japan, and was later licensed for production in the United States by the Midway division of Bally.
 ##### Important! 
 There are two branches for this repo! The master branch is an attempt at remaking the game using my own knowledge and online resources. The staging branch uses the code that was provided by the university.
